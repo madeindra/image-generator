@@ -175,7 +175,6 @@ async function generateWithGemini(prompt) {
     const aspect = document.getElementById('aspect').value;
     const imageSize = document.getElementById('image-size').value;
     const temperature = parseFloat(document.getElementById('gemini-temperature').value);
-    const thinkingLevel = document.getElementById('thinking-level').value;
     const useGrounding = document.getElementById('tool-grounding').checked;
     const useImageSearch = document.getElementById('tool-image-search').checked;
 
@@ -208,7 +207,6 @@ async function generateWithGemini(prompt) {
                 temperature,
                 imageConfig
             },
-            thinkingConfig: { thinkingLevel }
         };
 
         if (useImageSearch) {
