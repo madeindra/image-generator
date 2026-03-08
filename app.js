@@ -25,7 +25,9 @@ modelSelect.addEventListener('change', function () {
 });
 
 imageInput.addEventListener('change', function () {
-    selectedFiles = Array.from(this.files);
+    const newFiles = Array.from(this.files);
+    selectedFiles = [...selectedFiles, ...newFiles];
+    this.value = '';
     updatePreviews();
     updateInputFidelityVisibility();
 });
