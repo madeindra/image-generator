@@ -90,7 +90,8 @@ textarea {
     transition: all 0.3s;
 }
 
-.file-input-label:hover {
+.file-input-label:hover,
+.file-input-label.drag-over {
     background: #e8e8e8;
     border-color: #667eea;
 }

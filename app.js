@@ -32,6 +32,26 @@ imageInput.addEventListener('change', function () {
     updateInputFidelityVisibility();
 });
 
+const fileInputLabel = document.querySelector('.file-input-label');
+
+fileInputLabel.addEventListener('dragover', function (e) {
+    e.preventDefault();
+    this.classList.add('drag-over');
+});
+
+fileInputLabel.addEventListener('dragleave', function () {
+    this.classList.remove('drag-over');
+});
+
+fileInputLabel.addEventListener('drop', function (e) {
+    e.preventDefault();
+    this.classList.remove('drag-over');
+    const newFiles = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+    selectedFiles = [...selectedFiles, ...newFiles];
+    updatePreviews();
+    updateInputFidelityVisibility();
+});
+
 function updateInputFidelityVisibility() {
     inputFidelitySection.style.display = selectedFiles.length > 0 ? 'block' : 'none';
 }
