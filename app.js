@@ -7,6 +7,13 @@ const inputFidelitySection = document.getElementById('input-fidelity-section');
 
 let selectedFiles = [];
 let geminiOutputMode = 'images_text'; // 'images_text' or 'images_only'
+let isGenerating = false;
+
+window.addEventListener('beforeunload', function (e) {
+    if (isGenerating) {
+        e.preventDefault();
+    }
+});
 
 function setGeminiOutput(mode) {
     geminiOutputMode = mode;
@@ -127,6 +134,7 @@ async function generateWithGPT(prompt) {
     try {
         loading.style.display = 'block';
         generateBtn.disabled = true;
+        isGenerating = true;
 
         let fetchOptions;
         if (isEdit) {
@@ -187,6 +195,7 @@ async function generateWithGPT(prompt) {
     } finally {
         loading.style.display = 'none';
         generateBtn.disabled = false;
+        isGenerating = false;
     }
 }
 
@@ -203,6 +212,7 @@ async function generateWithGemini(prompt) {
     try {
         loading.style.display = 'block';
         generateBtn.disabled = true;
+        isGenerating = true;
 
         const parts = [{ text: prompt }];
 
@@ -269,6 +279,7 @@ async function generateWithGemini(prompt) {
     } finally {
         loading.style.display = 'none';
         generateBtn.disabled = false;
+        isGenerating = false;
     }
 }
 
